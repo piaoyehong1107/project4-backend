@@ -4,11 +4,17 @@ class StocksController < ApplicationController
         render :json=> @stocks.as_json(
         )
     end
-    def show
-        @stock=Stock.find(params[:id])
-    end
+    # def index
+    #     # token = request.headers['Auth-Key']
+    #     # puts token
+    #     # user_id = JWT.decode(token,'123')[0]["user_id"]
+    #     @stocks=User.find_by(id: 2).stocks
+    #     render :json=> @stocks.as_json()
+    # end
     def create 
         @stock=Stock.create(stock_params)
+        render :json=> @stock.as_json(
+        )
     end
     def destroy
         @stock=Stock.find(params[:id])
