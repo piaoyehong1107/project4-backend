@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
-    before_action :find_stock, only: [:destroy]
-    before_action :authenticate!, only: [:index,:destroy]
+    # before_action :find_stock, only: [:destroy]
+    # before_action :authenticate!, only: [:index,:destroy]
 
     def index
             current_user_id = current_user

@@ -1,4 +1,15 @@
 class ApplicationController < ActionController::API
+  
+    def login
+      @user = User.find_by(username: params[:username])
+      if @user && @user.authenticate(params[:password])
+        payload = { user_id: @user.id }
+        token = JWT.encode(payload,'123','HS256')
+        render :json => { auth_key: token }
+      else
+        render :json => { :msg => "Login failed.. Try again" }
+      end
+    end
     def current_user
         auth_header = request.headers['Authorization']
         logger.debug "============> auth token"
